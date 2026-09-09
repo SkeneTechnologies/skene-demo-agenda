@@ -1,0 +1,170 @@
+slug: harbor
+product:
+  name: Harbor
+  description: Booking links for B2B sales and customer success teams.
+  reason_for_existence: Teams share a booking link, take the meeting, and expand seats on a paid plan.
+
+layers:
+  - id: self_serve
+    name: Self-serve
+    spans_stages: [acquire, activate, monetize, expand]
+  - id: sales_assist
+    name: Sales-assist
+    spans_stages: [acquire, monetize]
+
+stages:
+  - id: acquire
+    order: 0
+    name: Acquire
+    subtitle: A team creates a workspace or books a demo.
+    milestones:
+      - id: signup
+        order: 0
+        name: Workspace created
+        description: A company account signs up.
+        tracked_event: signup_completed
+        tracking_status: code_tracked
+        tracking_questions:
+          - question: Which source drove signups?
+            analysis_type: attribution
+            required_events:
+              - event: signup_completed
+                role: start
+            required_properties: [source, medium, campaign]
+      - id: demo
+        order: 1
+        name: Demo booked
+        description: A prospect books a sales demo from the marketing site.
+        tracked_event: demo_booked
+        tracking_status: code_tracked
+        tracking_questions:
+          - question: How many demo booked events have no matching purchase?
+            analysis_type: conversion
+            required_events:
+              - event: demo_booked
+                role: start
+              - event: purchase_completed
+                role: end
+  - id: activate
+    order: 1
+    name: Activate
+    subtitle: The workspace reaches first value.
+    milestones:
+      - id: meeting_type
+        order: 0
+        name: Meeting type created
+        description: Setup, not first value.
+        tracked_event: meeting_type_created
+        tracking_status: code_tracked
+      - id: first_booking
+        order: 1
+        name: First meeting booked
+        description: A prospect books time on a Harbor link.
+        tracked_event: first_meeting_booked
+        tracking_status: code_tracked
+        tracking_questions:
+          - question: What share of signups reached first value?
+            analysis_type: conversion
+            required_events:
+              - event: signup_completed
+                role: start
+              - event: first_meeting_booked
+                role: end
+  - id: monetize
+    order: 2
+    name: Monetize
+    subtitle: Trial and paid subscription.
+    milestones:
+      - id: trial
+        order: 0
+        name: Trial started
+        description: Present on the trial screen, missing on checkout.
+        tracked_event: trial_started
+        tracking_status: code_tracked
+      - id: purchase
+        order: 1
+        name: Subscription started
+        description: Checkout records purchase without plan or amount.
+        tracked_event: purchase_completed
+        tracking_status: code_tracked
+        tracking_questions:
+          - question: Do purchase events carry plan and deal amount?
+            analysis_type: count
+            required_events:
+              - event: purchase_completed
+                role: start
+            required_properties: [plan, amount]
+  - id: expand
+    order: 3
+    name: Expand
+    subtitle: Seats and churn.
+    milestones:
+      - id: invite
+        order: 0
+        name: Teammate invited
+        tracked_event: invite_sent
+        tracking_status: code_tracked
+      - id: cancel
+        order: 1
+        name: Subscription cancelled
+        tracked_event: subscription_cancelled
+        tracking_status: code_tracked
+
+connectors:
+  - source: signup
+    target: first_booking
+    label: Activate
+  - source: first_booking
+    target: trial
+    label: Start trial
+  - source: trial
+    target: purchase
+    label: Convert
+  - source: demo
+    target: purchase
+    label: Close
+  - source: purchase
+    target: invite
+    label: Expand
+
+tracked_events:
+  - event: signup_completed
+    provider: PostHog
+    files: [lib/analytics.ts]
+    milestone_id: signup
+    status: code_tracked
+  - event: demo_booked
+    provider: PostHog
+    files: [app/page.tsx]
+    milestone_id: demo
+    status: code_tracked
+  - event: meeting_type_created
+    provider: PostHog
+    files: [app/workspace/page.tsx]
+    milestone_id: meeting_type
+    status: code_tracked
+  - event: first_meeting_booked
+    provider: PostHog
+    files: [app/workspace/book/page.tsx]
+    milestone_id: first_booking
+    status: code_tracked
+  - event: invite_sent
+    provider: PostHog
+    files: [app/workspace/invite/page.tsx]
+    milestone_id: invite
+    status: code_tracked
+  - event: trial_started
+    provider: PostHog
+    files: [app/workspace/trial/page.tsx]
+    milestone_id: trial
+    status: code_tracked
+  - event: purchase_completed
+    provider: PostHog
+    files: [app/workspace/checkout/page.tsx]
+    milestone_id: purchase
+    status: code_tracked
+  - event: subscription_cancelled
+    provider: PostHog
+    files: [app/workspace/settings/page.tsx]
+    milestone_id: cancel
+    status: code_tracked
