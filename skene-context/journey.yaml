@@ -1,6 +1,6 @@
-slug: harbor
+slug: agenda
 product:
-  name: Harbor
+  name: Agenda
   description: Booking links for B2B sales and customer success teams.
   reason_for_existence: Teams share a booking link, take the meeting, and expand seats on a paid plan.
 
@@ -59,7 +59,7 @@ stages:
       - id: first_booking
         order: 1
         name: First meeting booked
-        description: A prospect books time on a Harbor link.
+        description: A prospect books time on an Agenda link.
         tracked_event: first_meeting_booked
         tracking_status: code_tracked
         tracking_questions:

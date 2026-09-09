@@ -16,7 +16,7 @@ export default function LandingPage() {
     <main className="card">
       <h1>Booking links for B2B teams</h1>
       <p>
-        Harbor lets sales and customer success share a link, take the meeting,
+        Agenda lets sales and customer success share a link, take the meeting,
         and grow the workspace with seats. This sample exists so Skene can
         show a familiar SaaS funnel: signup, first booking, trial, and paid.
       </p>

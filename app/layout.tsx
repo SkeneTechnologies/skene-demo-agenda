@@ -3,7 +3,7 @@ import Link from "next/link";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Harbor",
+  title: "Agenda",
   description: "Booking links for B2B sales and customer success teams.",
 };
 
@@ -18,7 +18,7 @@ export default function RootLayout({
         <div className="shell">
           <header className="topbar">
             <Link href="/" className="brand">
-              Harbor
+              Agenda
             </Link>
             <nav>
               <Link href="/signup">Sign up</Link>

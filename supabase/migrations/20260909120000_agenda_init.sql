@@ -1,4 +1,4 @@
--- Harbor: B2B meeting scheduler used as the Skene Cloud sample product.
+-- Agenda: B2B meeting scheduler used as the Skene Cloud sample product.
 
 create table public.users (
   id uuid primary key,

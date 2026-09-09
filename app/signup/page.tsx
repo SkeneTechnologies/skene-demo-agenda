@@ -19,7 +19,7 @@ export default function SignupPage() {
 
   return (
     <main className="card">
-      <h1>Create a Harbor workspace</h1>
+      <h1>Create an Agenda workspace</h1>
       <p>
         Organic and paid signups should carry source, medium, and campaign so
         GTM can attribute acquisition.

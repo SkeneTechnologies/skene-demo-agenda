@@ -1,6 +1,6 @@
-# Harbor
+# Agenda
 
-Harbor is a B2B meeting scheduler. Sales and customer success teams share a booking link. Prospects pick a time. The workspace grows by inviting seats and converting a trial to a paid plan.
+Agenda is a B2B meeting scheduler. Sales and customer success teams share a booking link. Prospects pick a time. The workspace grows by inviting seats and converting a trial to a paid plan.
 
 This repository is the Skene Cloud sample product. It is not a customer app. The code and schema are written so Analyze finds a familiar GTM funnel and a few honest gaps.
 

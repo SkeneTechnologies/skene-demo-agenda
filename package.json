@@ -1,5 +1,5 @@
 {
-  "name": "skene-demo-harbor",
+  "name": "skene-demo-agenda",
   "private": true,
   "description": "Tiny B2B meeting-scheduler used as the Skene Cloud onboarding sample.",
   "scripts": {

@@ -18,7 +18,7 @@ export default function FirstBookingPage() {
     <main className="card">
       <h1>First meeting booked</h1>
       <p>
-        This is Harbor&apos;s activation event. A GTM team should be able to
+        This is Agenda&apos;s activation event. A GTM team should be able to
         ask what share of signups reach first value.
       </p>
       <button type="button" onClick={bookMeeting} disabled={booked}>

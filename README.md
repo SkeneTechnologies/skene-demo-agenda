@@ -1,8 +1,8 @@
-# Harbor
+# Agenda
 
 Private sample product for [Skene Cloud](https://github.com/SkeneTechnologies/skene-dashboard) onboarding.
 
-Harbor is a tiny B2B meeting scheduler. GTM users should recognize the motion: workspace signup, first booking, trial, paid seats, and cancel.
+Agenda is a tiny B2B meeting scheduler. GTM users should recognize the motion: workspace signup, first booking, trial, paid seats, and cancel.
 
 The dashboard analyzes this repository. Edit the captures and migrations here when the sample tour needs a clearer gap or a cleaner path.
 
